@@ -1,8 +1,8 @@
-# tls-server-go
+
 # TLS-Enabled Go Web Server
 This is a basic Go web server with TLS (Transport Layer Security) support. The server serves HTTP requests and supports TLS for secure communication.
 
-# TLS Configuration
+## TLS Configuration
 The TLS configuration is handled by the tlsConfig function in the server.go file. This function takes the paths to the TLS certificate and private key files as parameters and returns a configured *tls.Config.
 ```go
 func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
@@ -27,10 +27,10 @@ func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
 
 
 
-# Usage
+## Usage
 To use TLS in your Go web server, specify the paths to your TLS certificate and private key files. Then, create a TLS configuration using the tlsConfig function:
 
-# Specify the paths to the TLS certificate and private key files
+## Specify the paths to the TLS certificate and private key files
 ```go
 certPath := "path/to/your/certificate.pem"
 certKeyPath := "path/to/your/private-key.pem"
@@ -41,7 +41,7 @@ if err != nil {
     log.Fatal("Error creating TLS configuration:", err)
 }
 ```
-# Finally, set up your HTTP handlers and start the server with TLS:
+## Finally, set up your HTTP handlers and start the server with TLS:
 ```go
 //Set up handlers
 http.HandleFunc("/view/", makeHandler(viewHandler))
@@ -61,7 +61,7 @@ log.Fatal(server.ListenAndServeTLS("", ""))
 
 Ensure you replace the placeholder paths with the actual paths to your TLS certificate and private key files.
 
-# Notes
+## Notes
 - The tlsConfig function handles the loading of TLS certificates and creates a TLS configuration.
 - The server listens on port 443, the default port for HTTPS. Adjust the port as needed.
 - This example uses self-signed certificates suitable for development. For production, obtain valid certificates from a trusted certificate authority (CA).
