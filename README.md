@@ -62,7 +62,6 @@ log.Fatal(server.ListenAndServeTLS("", ""))
 Ensure you replace the placeholder paths with the actual paths to your TLS certificate and private key files.
 
 # Notes
-The tlsConfig function handles the loading of TLS certificates and creates a TLS configuration.
-The server listens on port 443, the default port for HTTPS. Adjust the port as needed.
-This example uses self-signed certificates suitable for development. For production, obtain valid certificates from a trusted certificate authority (CA).
-
+- The tlsConfig function handles the loading of TLS certificates and creates a TLS configuration.
+- The server listens on port 443, the default port for HTTPS. Adjust the port as needed.
+- This example uses self-signed certificates suitable for development. For production, obtain valid certificates from a trusted certificate authority (CA).
