@@ -5,7 +5,6 @@ This is a basic Go web server with TLS (Transport Layer Security) support. The s
 # TLS Configuration
 The TLS configuration is handled by the tlsConfig function in the server.go file. This function takes the paths to the TLS certificate and private key files as parameters and returns a configured *tls.Config.
 
-
 func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
     // Check if certificate and private key paths are provided
     if certPath == "" || certKeyPath == "" {
@@ -24,6 +23,9 @@ func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
         NextProtos:   []string{http2.NextProtoTLS, "http/1.1"},
     }, nil
 }
+
+
+
 # Usage
 To use TLS in your Go web server, specify the paths to your TLS certificate and private key files. Then, create a TLS configuration using the tlsConfig function:
 
