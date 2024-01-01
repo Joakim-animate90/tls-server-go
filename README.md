@@ -4,7 +4,7 @@ This is a basic Go web server with TLS (Transport Layer Security) support. The s
 
 # TLS Configuration
 The TLS configuration is handled by the tlsConfig function in the server.go file. This function takes the paths to the TLS certificate and private key files as parameters and returns a configured *tls.Config.
-
+```go
 func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
     // Check if certificate and private key paths are provided
     if certPath == "" || certKeyPath == "" {
@@ -23,6 +23,7 @@ func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
         NextProtos:   []string{http2.NextProtoTLS, "http/1.1"},
     }, nil
 }
+```
 
 
 
@@ -30,6 +31,7 @@ func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
 To use TLS in your Go web server, specify the paths to your TLS certificate and private key files. Then, create a TLS configuration using the tlsConfig function:
 
 # Specify the paths to the TLS certificate and private key files
+```go
 certPath := "path/to/your/certificate.pem"
 certKeyPath := "path/to/your/private-key.pem"
 
@@ -38,24 +40,25 @@ tlsConfig, err := tlsConfig(certPath, certKeyPath)
 if err != nil {
     log.Fatal("Error creating TLS configuration:", err)
 }
-Finally, set up your HTTP handlers and start the server with TLS:
-
-# Set up handlers
+```
+# Finally, set up your HTTP handlers and start the server with TLS:
+```go
+//Set up handlers
 http.HandleFunc("/view/", makeHandler(viewHandler))
 http.HandleFunc("/edit/", makeHandler(editHandler))
 http.HandleFunc("/save/", makeHandler(saveHandler))
 
-# Create an HTTP server with TLS configuration
+//Create an HTTP server with TLS configuration
 server := &http.Server{
     Addr:      ":443", // Use the desired port for HTTPS
     TLSConfig: tlsConfig,
 }
 
-# Start the server with TLS
+// Start the server with TLS
 log.Fatal(server.ListenAndServeTLS("", ""))
+```
 
-# Start the server with TLS
-log.Fatal(server.ListenAndServeTLS("", ""))
+
 Ensure you replace the placeholder paths with the actual paths to your TLS certificate and private key files.
 
 # Notes
