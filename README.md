@@ -1,12 +1,11 @@
 # tls-server-go
-TLS-Enabled Go Web Server
+# TLS-Enabled Go Web Server
 This is a basic Go web server with TLS (Transport Layer Security) support. The server serves HTTP requests and supports TLS for secure communication.
 
-TLS Configuration
-The TLS configuration is handled by the tlsConfig function in the main.go file. This function takes the paths to the TLS certificate and private key files as parameters and returns a configured *tls.Config.
+# TLS Configuration
+The TLS configuration is handled by the tlsConfig function in the server.go file. This function takes the paths to the TLS certificate and private key files as parameters and returns a configured *tls.Config.
 
-go
-Copy code
+
 func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
     // Check if certificate and private key paths are provided
     if certPath == "" || certKeyPath == "" {
@@ -25,12 +24,10 @@ func tlsConfig(certPath, certKeyPath string) (*tls.Config, error) {
         NextProtos:   []string{http2.NextProtoTLS, "http/1.1"},
     }, nil
 }
-Usage
+# Usage
 To use TLS in your Go web server, specify the paths to your TLS certificate and private key files. Then, create a TLS configuration using the tlsConfig function:
 
-go
-Copy code
-// Specify the paths to the TLS certificate and private key files
+# Specify the paths to the TLS certificate and private key files
 certPath := "path/to/your/certificate.pem"
 certKeyPath := "path/to/your/private-key.pem"
 
@@ -42,15 +39,18 @@ if err != nil {
 Finally, set up your HTTP handlers and start the server with TLS:
 
 # Set up handlers
-`http.HandleFunc("/view/", makeHandler(viewHandler))`
-`http.HandleFunc("/edit/", makeHandler(editHandler))`
-`http.HandleFunc("/save/", makeHandler(saveHandler))`
+http.HandleFunc("/view/", makeHandler(viewHandler))
+http.HandleFunc("/edit/", makeHandler(editHandler))
+http.HandleFunc("/save/", makeHandler(saveHandler))
 
 # Create an HTTP server with TLS configuration
 server := &http.Server{
     Addr:      ":443", // Use the desired port for HTTPS
     TLSConfig: tlsConfig,
 }
+
+# Start the server with TLS
+log.Fatal(server.ListenAndServeTLS("", ""))
 
 # Start the server with TLS
 log.Fatal(server.ListenAndServeTLS("", ""))
